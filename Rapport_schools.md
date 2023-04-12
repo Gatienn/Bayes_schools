@@ -12,7 +12,7 @@ On introduit plusieurs facteurs influent sur le résultat des élèves :
 
 ## Modèle utilisé
 
-On note $Y_{ij}$ les résultats moyens standardisés de l'élève i étudiant dans l'école j.  
+On note $Y_{ij}$ les résultats moyens standardisés de l'élève $i$ étudiant dans l'école $j$.  
 Ces résultats sont modélisés comme étant issus d'une loi normale dont la moyenne de la précision dépendent à la fois de l'élève et de son école :  
 $Y_{ij}$ $\sim Normal(\mu_{ij},\tau_{ij})$
 
@@ -22,6 +22,8 @@ $\mu{ij} = \alpha_{1j} + \alpha_{2j}LRT_{ij} + \alpha_{3j}VR_{1ij} + \beta_1LRT_
 où $Girl_{ij}$ vaut 1 si l'élève est une fille et 0 si c'est un garçon.  
 
 Si la corrélation entre les scores de l'élève à différents tests sur ses résultats moyens est évidente, il est également pertinent de tenir compte des facteurs relatifs à l'école. En effet, l'environnement dans lequel l'élève étudie peut avoir un impact sur ses résultats.
+
+La variable $alpha_{1j}$ est importante puisqu'elle représente le 'résidu' pour l'école $j$ après ajustement avec les facteurs associés aux élèves et à l'école elle-même. Nous verrons s'il est intéréssant de l'utiliser afin de classer les performances des écoles.
 
 On modélise par ailleurs la précision (inverse de la variance) de la manière suivante :  
 $log \tau_{ij} = \theta + \phi LRT_{ij}$  
