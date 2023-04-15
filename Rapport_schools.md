@@ -30,6 +30,9 @@ $log \tau_{ij} = \theta + \phi LRT_{ij}$
 D'après cette modélisation, meilleurs sont les résultats d'un élève au test LRT, plus la précision est grande et par conséquent la variance est faible.  
 L'interprétation que nous pourrions faire de cette relation est qu'un élève qui a de très bons résultats, généralement un élève sérieux dans son travail, aura tendance à avoir des résultats plus réguliers qu'un élève qui a de moins bons résultats et ne travaille pas, d'où une variance plus faible.
 
+Enfin, pour j fixé, les $\alpha_{kj} (k=1,2,3)$ sont supposés être issus d'une loi normale multivarié de moyenne $\gamma$ et de matrice de covariance $\Sigma$ :  
+$alpha_{kj}$ $\sim Normal(\gamma,\Sigma)$
+
 On obtient finalement le graphe du modèle suivant :  
 
 ![graphe](images\graphe_modele.jpg)  
@@ -37,4 +40,8 @@ On obtient finalement le graphe du modèle suivant :
 
 ## Echantilloneur de Gibbs et Metropolis Hastings
 
+Présentation des loi a priori et a posteriori dans cette partie
+
 ## Résultats
+
+Présentation et analyse des résultats dans cette partie
