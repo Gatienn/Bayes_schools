@@ -40,8 +40,26 @@ On obtient finalement le graphe du modèle suivant :
 
 ## Echantilloneur de Gibbs et Metropolis Hastings
 
-Présentation des loi a priori et a posteriori dans cette partie
+Présentation des loi a priori et a posteriori
 
 ## Résultats
 
-Présentation et analyse des résultats dans cette partie
+Le temps d'éxécution étant relativement important, on commence par générer des chaines de taille 50 à 100 afin d'ajuster le taux d'acceptation des propositions générées par la marche aléatoire. L'objectif est d'avoir un taux d'acceptation d'environ 30%, ce qui est un taux standard pour cet algorithme.
+
+Après avoir ajusté le taux d'acceptation, une chaîne de taille 1000 est générée. On peut si besoin retirer les premières valeurs de la chaînes (burning) ou n'en conserver qu'une sur un certain nombre de réalisations (thining) afin de limiter la dépendance d'un état de la chaîne avec l'état suivant.  
+
+On obtient des chaînes stationnaires pour la plupart des paramètres : 
+
+![graphe](images\chaine_theta_phi_beta.jpg)
+![graphe](images\chaine_M_T.jpg)  
+*Figure 2 : Allure des chaînes stationnaires obtenues*  
+
+En revanche, nous rencontrons des difficultés pour ajuster la chaîne des $\alpha_j$ : 
+
+![graphe](images\chaine_alpha.jpg)  
+*Figure 3 : Chaines des $\alpha_j$ obtenues*
+
+L'allure des chaines suggère que la marche aléatoire est trop petite. Toutefois, celle-ci a été ajustée pour atteindre un taux d'acceptation de 30% environ. En augmentant la marche aléatoire, on obtient un taux d'acceptation trop faible et la chaîne reste souvent constante.
+
+Une piste d'analyse des résultats de ce modèle serait d'étudier la capacité des $\alpha_{1j}$ à classer les écoles entre elles.  
+En particulier, on pourrait comparer le classement obtenu avec les $\alpha_{1j}$ à une autre manière de classer les écoles, par exemple en classant selon les performances des élèves ($Y_{ij} ou LRT_{ij}$).
