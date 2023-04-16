@@ -14,11 +14,11 @@ On introduit plusieurs facteurs influent sur le résultat des élèves :
 
 On note $Y_{ij}$ les résultats moyens standardisés de l'élève $i$ étudiant dans l'école $j$.  
 Ces résultats sont modélisés comme étant issus d'une loi normale dont la moyenne de la précision dépendent à la fois de l'élève et de son école :  
-$Y_{ij}$ $\sim Normal(\mu_{ij},\tau_{ij})$
+$Y_{ij}$ $\sim \mathcal{N}(\mu_{ij},\tau_{ij})$
 
 La moyenne est une combinaison de tous les facteurs introduits précedemment :
 
-$\mu{ij} = \alpha_{1j} + \alpha_{2j}LRT_{ij} + \alpha_{3j}VR_{1ij} + \beta_1LRT_{ij}^2 + \beta_2VR_{2ij} + \beta_3Girl_{ij} + \beta_4Girls' school_j + \beta_5Boys' school_j + \beta_6CE school_j + \beta_7RC school_j + \beta_8 other school_j $  ,  
+$$\mu{ij} = \alpha_{1j} + \alpha_{2j}LRT_{ij} + \alpha_{3j}VR_{1ij} + \beta_1LRT_{ij}^2 \hspace{3em} \quad \quad$$ $$\hspace{4em}+ \beta_2VR_{2ij} + \beta_3Girl_{ij} + \beta_4Girls' school_j + \beta_5Boys' school_j $$ $$+ \beta_6CE school_j + \beta_7RC school_j + \beta_8 other school_j $$ 
 où $Girl_{ij}$ vaut 1 si l'élève est une fille et 0 si c'est un garçon.  
 
 Si la corrélation entre les scores de l'élève à différents tests sur ses résultats moyens est évidente, il est également pertinent de tenir compte des facteurs relatifs à l'école. En effet, l'environnement dans lequel l'élève étudie peut avoir un impact sur ses résultats.
@@ -41,6 +41,17 @@ On obtient finalement le graphe du modèle suivant :
 ## Echantilloneur de Gibbs et Metropolis Hastings
 
 Présentation des loi a priori et a posteriori
+### Les lois a priori
+ - $\pi\left(\beta_{k}\right) \sim \mathcal{N}\left(0, 10^{4}\right) \quad \forall k \epsilon \left[1 \dots 8\right]$
+ - $\pi\left(\theta\right) \sim \mathcal{N}\left(0, 10^{4}\right)$
+ - $\pi\left(\phi\right) \sim \mathcal{N}\left(0, 10^{4}\right)$
+ - $\pi\left(\alpha_{j}\right) \sim \mathcal{N}_{3}\left(\gamma, \Sigma\right) \quad \forall j$ 
+ - $T = \Sigma^{-1} \sim Wishart\left(R\right)$
+ - $\pi(\gamma) \sim \mathcal{N}_{3} \left(\mu^{\ast}, \Sigma^{\ast} \right)$
+
+### Les lois a posteriori
+
+
 
 ## Résultats
 
