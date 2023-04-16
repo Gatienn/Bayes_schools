@@ -14,7 +14,7 @@ On introduit plusieurs facteurs influent sur le résultat des élèves :
 
 On note $Y_{ij}$ les résultats moyens standardisés de l'élève $i$ étudiant dans l'école $j$.  
 Ces résultats sont modélisés comme étant issus d'une loi normale dont la moyenne de la précision dépendent à la fois de l'élève et de son école :  
-$Y_{ij}$ $\sim \mathcal{N}(\mu_{ij},\tau_{ij})$
+$$Y_{ij}\sim \mathcal{N}(\mu_{ij},\tau_{ij})$$
 
 La moyenne est une combinaison de tous les facteurs introduits précedemment :
 
@@ -23,15 +23,15 @@ où $Girl_{ij}$ vaut 1 si l'élève est une fille et 0 si c'est un garçon.
 
 Si la corrélation entre les scores de l'élève à différents tests sur ses résultats moyens est évidente, il est également pertinent de tenir compte des facteurs relatifs à l'école. En effet, l'environnement dans lequel l'élève étudie peut avoir un impact sur ses résultats.
 
-La variable $alpha_{1j}$ est importante puisqu'elle représente le 'résidu' pour l'école $j$ après ajustement avec les facteurs associés aux élèves et à l'école elle-même. Nous verrons s'il est intéréssant de l'utiliser afin de classer les performances des écoles.
+La variable $\alpha_{1j}$ est importante puisqu'elle représente le 'résidu' pour l'école $j$ après ajustement avec les facteurs associés aux élèves et à l'école elle-même. Nous verrons s'il est intéréssant de l'utiliser afin de classer les performances des écoles.
 
 On modélise par ailleurs la précision (inverse de la variance) de la manière suivante :  
-$log \tau_{ij} = \theta + \phi LRT_{ij}$  
+$$\log \left(\tau_{ij}\right) = \theta + \phi LRT_{ij}$$
 D'après cette modélisation, meilleurs sont les résultats d'un élève au test LRT, plus la précision est grande et par conséquent la variance est faible.  
 L'interprétation que nous pourrions faire de cette relation est qu'un élève qui a de très bons résultats, généralement un élève sérieux dans son travail, aura tendance à avoir des résultats plus réguliers qu'un élève qui a de moins bons résultats et ne travaille pas, d'où une variance plus faible.
 
-Enfin, pour j fixé, les $\alpha_{kj} (k=1,2,3)$ sont supposés être issus d'une loi normale multivarié de moyenne $\gamma$ et de matrice de covariance $\Sigma$ :  
-$alpha_{kj}$ $\sim Normal(\gamma,\Sigma)$
+Enfin, pour $j$ fixé, les $(\alpha_{kj})$ sont supposés être issus d'une loi normale multivarié de moyenne $\gamma$ et de matrice de covariance $\Sigma$ :
+$$\alpha_{kj}\sim \mathcal{N}\left(\gamma,\Sigma\right)$$
 
 On obtient finalement le graphe du modèle suivant :  
 
@@ -50,8 +50,19 @@ Présentation des loi a priori et a posteriori
  - $\pi(\gamma) \sim \mathcal{N}_{3} \left(\mu^{\ast}, \Sigma^{\ast} \right)$
 
 ### Les lois a posteriori
+On pose $a=0$ et $b^2=10^4$
+ - $\pi\left(\beta_{k}|\dots\right) \propto \exp\left(-\frac{\left(\beta_{k}-a\right)^2}{2b^2}\right) \times \exp\left(-\sum_{i,j}\frac{(Y_{ij}-\mu_{ij})^2}{2}\tau_{ij}\right) \quad \forall k \epsilon \left[1 \dots 8\right] $
+ 
+Cette expression peut se simplifier pour obtenir une loi normale $\pi\left(\beta_{k}|\dots\right) \sim \mathcal{N}\left(\tilde{\mu}, \tilde{\sigma}^2\right)$
+
+où $\tilde{\sigma}^2 = \left(\frac{1}{b^2}+\sum_{i,j}LRT_{ij}^2\tau_{ij}\right)^{-1}$ et $\tilde{\mu} = \tilde{\sigma}^2\left(\frac{a}{b^2}+\sum_{i,j}\left(Y_{ij} -\mu_{ij}+\beta_{k}LRT_{ij}^2\right)LRT_{ij}\tau_{ij}\right)$
+
+ - $\pi\left(\theta|\dots\right) \propto \exp(-\frac{\left(\theta - a\right)^2}{2b^2}) \times \exp\left(-\sum_{i,j}\frac{\left(Y_{ij} - \alpha_{ij}\right)^2}{2}e^{\theta}e^{\phi LRT_{ij}}\right)$
+ - $\pi\left(\phi|\dots\right) \propto \exp(-\frac{\left(\theta - a\right)^2}{2b^2}) \times \exp\left(-\sum_{i,j}\frac{\left(Y_{ij} - \alpha_{ij}\right)^2}{2}e^{\theta}e^{\phi LRT_{ij}}\right)$
+ - $\pi\left(\alpha_{j}|\dots\right) \propto \exp\left(-\frac{1}{2}\left(\alpha_{j}-\gamma\right)^TT\left(\alpha_{j}-\gamma\right)\right) \times \exp\left(-\sum_{i}\frac{\left(Y_{ij}-\mu_{ij}\right)^2}{2}e^{\theta}e^{\phi LRT_{ij}}\right)$
 
 
+Pour les lois a posteriori non identifiées, on a réalisé un échantillonnage par l'algorithme de Metropolis-Hastings. Bien que la loi des $\beta_{k}$ soit connue, on a utilisé la première expression, et donc l'algorithme M-H, qui nous a donné un meilleur résultat.
 
 ## Résultats
 
